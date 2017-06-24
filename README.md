@@ -4,5 +4,5 @@ Expression data for Macosko et al, "Highly Parallel Genome-wide Expression Profi
 
 This repo aggregates:
 - Text files (`.txt.gz`) files downloaded from the GEO Accession: [GSE63473](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63473)
-- Supplementary data/excel files
+- Supplementary data/excel files from the [paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4481139/)
 - Cluster identities from the [Drop-Seq website](http://mccarrolllab.com/dropseq/)
