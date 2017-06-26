@@ -1,2 +1,5 @@
 # Ignore CSVs unless explicitly added
 .csv
+
+# Jupyter/IPython Checkpoints
+.ipynb_checkpoints
