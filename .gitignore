@@ -4,5 +4,8 @@
 # Jupyter/IPython Checkpoints
 .ipynb_checkpoints
 
-# Emacs files
+# Emacs temporary files
 *~
+
+# Mac OS files
+.DS_Store
