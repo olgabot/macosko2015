@@ -29,4 +29,6 @@ def test_load_data(package, name):
         assert len(expr.index) == len(cells.index)
         assert len(expr.columns) == len(genes.index)
     elif package == "xarray":
-        assert isinstance(returned, xr.DataSet)
+        assert isinstance(returned, xr.Dataset)
+
+        # Don't need to check that axes line up because xarray does that for us
