@@ -2,3 +2,4 @@
 *.netcdf filter=lfs diff=lfs merge=lfs -text
 .csv.gz filter=lfs diff=lfs merge=lfs -text
 *.csv.gz filter=lfs diff=lfs merge=lfs -text
+macosko2015/data/05_make_rentina_subsets_for_teaching/retina_batch1_expression.csv filter=lfs diff=lfs merge=lfs -text
