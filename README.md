@@ -61,30 +61,31 @@ The mini-datasets were created in
 This dataset consists of 50 random cells from the six largest clusters
 (clusters 24, 25, 26, 27, 33, 34) from the first run (batch). This is a useful
 benchmarking dataset for testing things like clustering, gene dropout. To
-access it, you can extract each of the files individually:
+access it, use the built-in function `load_big_clusters`. By default, this
+outputs three pandas dataframes:
+
+- `expression` matrix of raw digital expression counts (unique molecular
+  identifier/UMI counts)
+- `cells` metadata, indicating which cluster each cell was assigned to in the paper
+- `genes` metadata, indicating which cluster differentially expressed this gene
+
+Note: this downloads a file from GitHub and thus requires an internet
+connection.
 
 ```python
-import os
+import macosko2015
 
-import pandas as pd
-
-folder = os.path.join('data', '05_make_rentina_subsets_for_teaching')
-expression = pd.read_csv(os.path.join(folder, 'big_clusters_expression.csv'))
-cell_metadata = pd.read_csv(os.path.join(folder, 'big_clusters_cell_metadata.csv'))
-gene_metadata = pd.read_csv(os.path.join(folder, 'big_clusters_gene_metadata.csv'))
+expression, cells, genes = macosko2015.load_big_clusters()
 ```
 
+Or if you like using `xarray`](http://xarray.pydata.org/), you can specify to
+use the `xarray` package:
 
-Or use [`xarray`](http://xarray.pydata.org/) to access the NetCDF dataset:
 
 ```python
-import os
+import macosko2015
 
-import xarray as xr
-
-folder = os.path.join('data', '05_make_rentina_subsets_for_teaching')
-filename = os.path.join(folder, 'big_clusters.netcdf')
-ds = xr.open_dataset(filename)
+big_clusters = macosko2015.load_big_clusters('xarray')
 ```
 
 ### Mini-dataset 2: Amacrine cells, batch 1
@@ -92,30 +93,42 @@ ds = xr.open_dataset(filename)
 This dataset consists of all amacrine cells (clusters 3-23, inclusive) from the
 first run (batch).
 
+Note: this downloads a file from GitHub and thus requires an internet
+connection.
+
 ```python
-import os
+import macosko2015
 
-import pandas as pd
-
-folder = os.path.join('data', '05_make_rentina_subsets_for_teaching')
-expression = pd.read_csv(os.path.join(folder, 'amacrine_expression.csv'))
-cell_metadata = pd.read_csv(os.path.join(folder, 'amacrine_cell_metadata.csv'))
-gene_metadata = pd.read_csv(os.path.join(folder, 'amacrine_gene_metadata.csv'))
+expression, cells, genes = macosko2015.load_amacrine()
 ```
 
 
 Or use [`xarray`](http://xarray.pydata.org/) to access the NetCDF dataset:
 
 ```python
-import os
+import macosko2015
 
-import xarray as xr
-
-folder = os.path.join('data', '05_make_rentina_subsets_for_teaching')
-filename = os.path.join(folder, 'amacrine.netcdf')
-ds = xr.open_dataset(filename)
+amacrine = macosko2015.load_amacrine('amacrine')
 ```
+### Larger datasest
 
+Beyond the datasets above, even a single batch's digital expression matrix is
+too big for PyPI or GitHub, and is tracked by GitHub's Large File Storage (LFS)
+. If you want access to the all of the data, it is best to `git clone` the repo
+and fetch all the data stored on `git lfs`. If you haven't already, you will
+need [install `git lfs`](https://help.github.com/articles/installing-git-large-file-storage/.
+
+With SSH keys:
+
+```git
+git clone git@github.com:olgabot/macosko2015
+git lfs fetch
+```
+Over HTTP:
+```git
+git clone https://github.com/olgabot/macosko2015
+git lfs fetch
+```
 
 ## Contributions
 
