@@ -1,6 +1,8 @@
 include requirements.txt
 include README.md
-recursive-include macosko2015/data/00_original *.txt *.txt.gz *.xlsx *.csv *.netcdf *.ipynb
+recursive-exclude macosko2015 *.csv *.netcdf
+include macosko2015/data/00_original/*
+include macosko2015/notebooks/*.ipynb
+include macosko2015/figures/*
 recursive-exclude macosko2015 *.ipynb_checkpoints
 
-# Exclude the really big files
