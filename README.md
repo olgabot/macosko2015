@@ -7,6 +7,25 @@ This repo aggregates:
 - Supplementary data/excel files from the [paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4481139/)
 - Cluster identities from the [Drop-Seq website](http://mccarrolllab.com/dropseq/)
 
+## How to install
+
+Due to space limitations on the Python Package Index (PyPI), estimated at 60MB,
+the best way to install this repo is to call `pip` on this GitHub repository:
+
+```
+pip install git+git://github.com/olgabot/macosko2015.git
+```
+
+If you want to clone the repository and install it, then to avoid copying the
+files around and having the data take up too much space, it's best to install
+in "editable mode" (`-e`) as that will simply point your current Python to this directory:
+
+```
+git clone git@github.com:olgabot/macosko2015
+cd macosko2015
+pip install -e .
+```
+
 ## Repo organization
 
 
