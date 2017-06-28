@@ -13,6 +13,7 @@ Due to space limitations on the Python Package Index (PyPI), estimated at 60MB,
 the best way to install this repo is to call `pip` on this GitHub repository:
 
 ```
+conda create -n macosko2015-env --file https://raw.githubusercontent.com/olgabot/macosko2015/master/environment.yml
 pip install git+git://github.com/olgabot/macosko2015.git
 ```
 
@@ -23,6 +24,8 @@ in "editable mode" (`-e`) as that will simply point your current Python to this 
 ```
 git clone git@github.com:olgabot/macosko2015
 cd macosko2015
+conda create --file environment.yml
+source activate macosko2015-env
 pip install -e .
 ```
 
