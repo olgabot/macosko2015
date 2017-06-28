@@ -10,33 +10,35 @@ This repo aggregates:
 ## Repo organization
 
 
-This repo consists of 2 major folders, `data` and `notebooks`. They mirror each
-other in structure, so everything in `data` can be tracked to a specific notebook.
+Within the package folder `macosko2015`, this repo consists of 2 major folders,
+`data` and `notebooks`. They mirror each other in structure, so everything in
+`data` can be tracked to a specific notebook.
 
 Currently, the `data` folder consists of 6 folders:
 
 ```
-data
-├── 00_original/
-├── 02_make_celltype_metadata/
-├── 03_clean_cluster_assignments/
-├── 04_extract_data_from_supplementary_excel_files/
-├── 05_combine_retina_data/
-└── 05_make_rentina_subsets_for_teaching/
+macosko2015/
+└── data
+    ├── 00_original/
+    ├── 02_make_celltype_metadata/
+    ├── 03_clean_cluster_assignments/
+    ├── 04_extract_data_from_supplementary_excel_files/
+    ├── 05_combine_retina_data/
+    └── 05_make_rentina_subsets_for_teaching/
 ```
 
 Except for `00_original`, the contents of each folder can be traced back to an
 exact notebook:
 
 ```
-notebooks
-├── 02_make_celltype_metadata.ipynb
-├── 03_clean_cluster_assignments.ipynb
-├── 04_extract_data_from_supplementary_excel_files.ipynb
-├── 05_make_rentina_subsets_for_teaching.ipynb
-├── 06_combine_retina_data.ipynb
-├── __pycache__
-└── common.py
+macosko2015/
+└── notebooks
+    ├── 02_make_celltype_metadata.ipynb
+    ├── 03_clean_cluster_assignments.ipynb
+    ├── 04_extract_data_from_supplementary_excel_files.ipynb
+    ├── 05_make_rentina_subsets_for_teaching.ipynb
+    ├── 06_combine_retina_data.ipynb
+    └── common.py
 ```
 
 Finally, `common.py` consists of code that is shared between all the notebooks,
@@ -129,6 +131,12 @@ Over HTTP:
 git clone https://github.com/olgabot/macosko2015
 git lfs fetch
 ```
+
+## Jupyter Notebooks of Data Cleaning
+
+If you are interested in learning how the data was cleaned and unified into
+this format, the best way to get this information is by cloning this repository
+and exploring the notebooks in the subfolder `macosko2015/notebooks`.
 
 ## Contributions
 
