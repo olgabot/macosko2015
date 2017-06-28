@@ -1,0 +1,30 @@
+name: macosko2015-env
+channels:
+- bioconda
+- r
+- defaults
+- conda-forge
+dependencies:
+- jupyter
+- notebook
+- pandas
+- xarray
+- NetCDF
+- seaborn
+- matplotlib
+- pip:
+  - args
+  - click
+  - clint
+  - ipython-genutils
+  - jupyter-client
+  - jupyter-console
+  - jupyter-core
+  - pkginfo
+  - polo
+  - prompt-toolkit
+  - requests-toolbelt
+  - tqdm
+  - twine
+prefix: /Users/olgabot/anaconda3/envs/macosko2015-env
+
