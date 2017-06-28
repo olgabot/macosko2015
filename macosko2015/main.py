@@ -3,8 +3,7 @@ import os
 import pandas as pd
 import xarray as xr
 
-BASE_URL = 'http://media.githubusercontent.com/media/olgabot/macosko2015/' \
-           'master/macosko2015/data'
+FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 
 
 def read_csv(folder, filename):
@@ -14,7 +13,7 @@ def read_csv(folder, filename):
 
 def _load(prefix, subfolder, package):
     """Internal method for loading """
-    folder = os.path.join(BASE_URL, subfolder)
+    folder = os.path.join(FOLDER, subfolder)
 
     if package == 'xarray':
         return xr.open_dataset(os.path.join(folder, '{}.netcdf'.format(prefix)))
