@@ -1,0 +1,8 @@
+name: macosko2015
+channels:
+- bioconda
+- r
+- defaults
+- conda-forge
+prefix: /Users/olgabot/code/macosko2015/macosko2015
+
