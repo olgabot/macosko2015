@@ -17,7 +17,7 @@ the best way to install this repo is to first create an environment using the
 ```
 conda create -n macosko2015-env --file https://raw.githubusercontent.com/olgabot/macosko2015/master/environment.yml
 source activate macosko2015-env
-pip install git+git://github.com/olgabot/macosko2015.git
+pip install macosko2015
 ```
 
 If you want to clone the repository and install it, then to avoid copying the
