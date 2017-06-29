@@ -51,22 +51,7 @@ def _load(prefix, subfolder, package):
 def load_big_clusters(package='pandas'):
     """Read expression and metadata for 50 random cells from 6 biggest clusters
     
-    Parameters
-    ----------
-    package : 'pandas' | 'xarray'
-
-    Returns
-    -------
-    if format == "pandas":
-        expression, cell_metadata, gene_metadata
-    if format == "xarray"
-    """
-    return _load('big_clusters', '05_make_rentina_subsets_for_teaching',
-                 package)
-
-
-def load_amacrine(package='pandas'):
-    """Read expression and metadata for 50 random cells from 6 biggest clusters
+    300 cells, 259 genes
     
     Parameters
     ----------
@@ -77,6 +62,47 @@ def load_amacrine(package='pandas'):
     if format == "pandas":
         expression, cell_metadata, gene_metadata
     if format == "xarray"
+        xarray.Dataset
+    """
+    return _load('big_clusters', '05_make_rentina_subsets_for_teaching',
+                 package)
+
+
+def load_amacrine(package='pandas'):
+    """Read expression and metadata for 714 amacrine cells from first batch
+
+    714 cells, 614 genes
+    
+    Parameters
+    ----------
+    package : 'pandas' | 'xarray'
+
+    Returns
+    -------
+    if format == "pandas":
+        expression, cell_metadata, gene_metadata
+    if format == "xarray"
+        xarray.Dataset
     """
     return _load('amacrine', '05_make_rentina_subsets_for_teaching',
+                 package)
+
+
+def load_differential_clusters(package='pandas'):
+    """Read expression and metadata for 6020 cells and 1339 diff expr genes
+    
+    6020 cells, 1339 genes
+    
+    Parameters
+    ----------
+    package : 'pandas' | 'xarray'
+
+    Returns
+    -------
+    if format == "pandas":
+        expression, cell_metadata, gene_metadata
+    if format == "xarray":
+        xarray.Dataset
+    """
+    return _load('differential_clusters', '05_make_rentina_subsets_for_teaching',
                  package)

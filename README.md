@@ -80,7 +80,7 @@ big_clusters = macosko2015.load_big_clusters('xarray')
 ### Mini-dataset 2: Amacrine cells, batch 1
 
 This dataset consists of all amacrine cells (clusters 3-23, inclusive) from the
-first run (batch).
+first run (batch) and contains 300 cells, 259 genes.
 
 Note: this downloads a file from GitHub and thus requires an internet
 connection.
@@ -97,8 +97,33 @@ Or use [`xarray`](http://xarray.pydata.org/) to access the NetCDF dataset:
 ```python
 import macosko2015
 
-amacrine = macosko2015.load_amacrine('amacrine')
+amacrine = macosko2015.load_amacrine('xarray')
 ```
+
+### Mini-dataset 3: Differential clusters
+
+This dataset consists of all cells from the first run (batch), and only the
+differentially expressed genes found by the paper. This dataset contains 6020
+cells, 1339 genes.
+
+Note: this downloads a file from GitHub and thus requires an internet
+connection.
+
+```python
+import macosko2015
+
+expression, cells, genes = macosko2015.load_differential_clusters()
+```
+
+
+Or use [`xarray`](http://xarray.pydata.org/) to access the NetCDF dataset:
+
+```python
+import macosko2015
+
+amacrine = macosko2015.load_differential_clusters('xarray')
+```
+
 ### Larger datasest
 
 Beyond the datasets above, even a single batch's digital expression matrix is
@@ -172,6 +197,11 @@ Contributions, especially to improving the cleaning of the datasets, are welcome
 
 ## History
 
+
+### v2.0.1 (2017-06-29)
+
+- Add cell and gene feature data as coordinates
+- Add `differential_clusters` as dataset
 
 ### v2.0.0 (2017-06-29)
 
