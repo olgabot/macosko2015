@@ -44,14 +44,6 @@ coverage: clean-pyc
 	coverage run --source macosko2015 --omit="*/test*" --module py.test
 	coverage report --show-missing
 
-docs:
-	rm -f docs/macosko2015.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ macosko2015
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
-	open docs/_build/html/index.html
-
 release: clean
 	python setup.py sdist upload
 	python setup.py bdist_wheel upload
@@ -62,4 +54,4 @@ dist: clean
 	ls -l dist
 
 install: clean
-	python setup.py install -e
+	python setup.py install
