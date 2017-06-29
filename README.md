@@ -10,10 +10,13 @@ This repo aggregates:
 ## How to install
 
 Due to space limitations on the Python Package Index (PyPI), estimated at 60MB,
-the best way to install this repo is to call `pip` on this GitHub repository:
+the best way to install this repo is to first create an environment using the
+[Anaconda Python Distribution](https://www.continuum.io/downloads) and call
+`pip` on this GitHub repository:
 
 ```
 conda create -n macosko2015-env --file https://raw.githubusercontent.com/olgabot/macosko2015/master/environment.yml
+source activate macosko2015-env
 pip install git+git://github.com/olgabot/macosko2015.git
 ```
 
@@ -163,6 +166,17 @@ and exploring the notebooks in the subfolder `macosko2015/notebooks`.
 ## Contributions
 
 Contributions, especially to improving the cleaning of the datasets, are welcome!
+
+## History
+
+
+### v2.0.0 (2017-06-29)
+
+- Keep the data hosted on github and read it over http
+
+### v1.0.0 (2017-06-26)
+
+- Initial release on PyPI
 
 ## License
 
