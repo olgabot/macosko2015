@@ -1,6 +1,9 @@
 # macosko2015
 
-Expression data for Macosko et al, "Highly Parallel Genome-wide Expression Profiling of Individual Cells Using Nanoliter Droplets," Cell (2015)
+The purpose of this package is to make it easy to load the single-cell RNA-seq
+dataset from the paper, Macosko et al, "Highly Parallel Genome-wide Expression
+Profiling of Individual Cells Using Nanoliter Droplets," Cell (2015) (
+[Pubmed](https://www.ncbi.nlm.nih.gov/pubmed/26000488))
 
 This repo aggregates:
 - Text files (`.txt.gz`) files downloaded from the GEO Accession: [GSE63473](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63473)
@@ -32,48 +35,7 @@ source activate macosko2015-env
 pip install -e .
 ```
 
-## Repo organization
-
-
-Within the package folder `macosko2015`, this repo consists of 2 major folders,
-`data` and `notebooks`. They mirror each other in structure, so everything in
-`data` can be tracked to a specific notebook.
-
-Currently, the `data` folder consists of 6 folders:
-
-```
-macosko2015/
-└── data
-    ├── 00_original/
-    ├── 02_make_celltype_metadata/
-    ├── 03_clean_cluster_assignments/
-    ├── 04_extract_data_from_supplementary_excel_files/
-    ├── 05_combine_retina_data/
-    └── 05_make_rentina_subsets_for_teaching/
-```
-
-Except for `00_original`, the contents of each folder can be traced back to an
-exact notebook:
-
-```
-macosko2015/
-└── notebooks
-    ├── 02_make_celltype_metadata.ipynb
-    ├── 03_clean_cluster_assignments.ipynb
-    ├── 04_extract_data_from_supplementary_excel_files.ipynb
-    ├── 05_make_rentina_subsets_for_teaching.ipynb
-    ├── 06_combine_retina_data.ipynb
-    └── common.py
-```
-
-Finally, `common.py` consists of code that is shared between all the notebooks,
-especially boilerplate code defining the locations of the folders.
-
-If you're wondering why there isn't a `01_...` notebook, that's because
-originally, there was ONE `01_data_cleaning` notebook before I realized it was
-a much bigger job that required more than one notebook :)
-
-## Data files
+## How to use and access the data
 
 So far, only the retina data (figures 4-6) has been aggregated. The HEK293T
 (human) and 3T3 (mouse) cell line data has not been cleaned or aggregated (but
@@ -156,6 +118,47 @@ Over HTTP:
 git clone https://github.com/olgabot/macosko2015
 git lfs fetch
 ```
+
+## Repo organization
+
+
+Within the package folder `macosko2015`, this repo consists of 2 major folders,
+`data` and `notebooks`. They mirror each other in structure, so everything in
+`data` can be tracked to a specific notebook.
+
+Currently, the `data` folder consists of 6 folders:
+
+```
+macosko2015/
+└── data
+    ├── 00_original/
+    ├── 02_make_celltype_metadata/
+    ├── 03_clean_cluster_assignments/
+    ├── 04_extract_data_from_supplementary_excel_files/
+    ├── 05_combine_retina_data/
+    └── 05_make_rentina_subsets_for_teaching/
+```
+
+Except for `00_original`, the contents of each folder can be traced back to an
+exact notebook:
+
+```
+macosko2015/
+└── notebooks
+    ├── 02_make_celltype_metadata.ipynb
+    ├── 03_clean_cluster_assignments.ipynb
+    ├── 04_extract_data_from_supplementary_excel_files.ipynb
+    ├── 05_make_rentina_subsets_for_teaching.ipynb
+    ├── 06_combine_retina_data.ipynb
+    └── common.py
+```
+
+Finally, `common.py` consists of code that is shared between all the notebooks,
+especially boilerplate code defining the locations of the folders.
+
+If you're wondering why there isn't a `01_...` notebook, that's because
+originally, there was ONE `01_data_cleaning` notebook before I realized it was
+a much bigger job that required more than one notebook :)
 
 ## Jupyter Notebooks of Data Cleaning
 
