@@ -3,24 +3,45 @@ import os
 import pandas as pd
 import xarray as xr
 
-FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+try:
+    # Python 2
+    from urlparse import urljoin
+except ImportError:
+    # Python 3
+    from urllib.parse import urljoin
+
+BASE_URL = "https://media.githubusercontent.com/media/olgabot/macosko2015/" \
+         "master/macosko2015/data/"
 
 
 def read_csv(folder, filename):
     """Wrapper for pandas read_csv that uses the first column for the index"""
-    return pd.read_csv(os.path.join(folder, filename), index_col=0)
+    csv = urljoin(folder, filename)
+    return pd.read_csv(csv, index_col=0)
 
 
 def _load(prefix, subfolder, package):
     """Internal method for loading """
-    folder = os.path.join(FOLDER, subfolder)
+
+    # Add terminal slash because urljoin is not smart
+    subfolder = subfolder + '/' if not subfolder.endswith('/') else subfolder
+
+    folder = urljoin(BASE_URL, subfolder)
+
+    expression = read_csv(folder, '{}_expression.csv'.format(prefix))
+    cell_metadata = read_csv(folder, '{}_cell_metadata.csv'.format(prefix))
+    gene_metadata = read_csv(folder, '{}_gene_metadata.csv'.format(prefix))
 
     if package == 'xarray':
-        return xr.open_dataset(os.path.join(folder, '{}.netcdf'.format(prefix)))
+        ds = xr.Dataset({'expression': (['cell', 'gene'], expression),
+                         'gene_metadata':
+                             (['gene', 'gene_feature', ], gene_metadata),
+                         'cell_metadata':
+                             (['cell', 'cell_feature'], cell_metadata)},
+                        coords={'gene': expression.columns,
+                                'cell': expression.index})
+        return ds
     if package == 'pandas':
-        expression = read_csv(folder, '{}_expression.csv'.format(prefix))
-        cell_metadata = read_csv(folder, '{}_cell_metadata.csv'.format(prefix))
-        gene_metadata = read_csv(folder, '{}_gene_metadata.csv'.format(prefix))
         return expression, cell_metadata, gene_metadata
     else:
         raise ValueError('"{}" is not a valid format. Only "pandas" and '
