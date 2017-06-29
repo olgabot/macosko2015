@@ -1,0 +1,49 @@
+language: python
+
+python:
+- '2.7'
+- '3.4'
+- '3.5'
+- '3.6'
+
+before_install:
+# http://conda.pydata.org/docs/travis.html#the-travis-yml-file
+- wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH="$HOME/miniconda/bin:$PATH"
+- hash -r
+- conda config --set always_yes yes --set changeps1 no
+- conda update -q conda
+- conda info -a
+
+install:
+- conda env create --file testing/environment_no_python.yml python=$TRAVIS_PYTHON_VERSION
+- source activate macosko2015-env
+- pip install -e .
+
+before_script:
+- git config --global user.email "olga.botvinnik@gmail.com"
+- git config --global user.name "olgabot"
+- git config --global push.default simple
+- export REPO_URL_GITHUB="https://$GH_TOKEN@github.com/$GH_REPO.git"
+
+script:
+- make coverage
+- conda create -n lint-env --yes flake8
+- source activate lint-env
+- make lint
+- deactivate lint-env
+
+after_script:
+  - MASTER=master
+  - if [[ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]] || [[ $TRAVIS_BRANCH == v*.*.* ]] ; then export DEPLOY_HTML_DIR=docs ; fi
+  - if [[ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]] || [[ $TRAVIS_BRANCH == "$MASTER" ]] ; then export DEPLOY_HTML_DIR=docs-dev ; fi
+  - if [[ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]] || [[ $TRAVIS_BRANCH == v*.*.* ]] || [[ $TRAVIS_BRANCH == "$MASTER" ]] ; then sudo apt-get install pandoc; pip install -r doc/requirements.txt; cd docs ; make setup_gh_pages ; make generate ; make deploy ; fi
+
+after_success:
+  - which -a curl
+  - set -o pipefail
+  - /usr/bin/curl --progress-bar https://codecov.io/bash | bash
+  - echo $?
+  - set +o pipefail
+#  - bash <(curl -s https://codecov.io/bash)
