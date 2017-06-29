@@ -11,7 +11,7 @@ except ImportError:
     from urllib.parse import urljoin
 
 BASE_URL = "https://media.githubusercontent.com/media/olgabot/macosko2015/" \
-         "master/macosko2015/data/"
+         "master/data/"
 
 
 def read_csv(folder, filename):
