@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-version = '2.0.1'
+version = '2.0.2'
 
 required = open('requirements.txt').read().split('\n')
 

@@ -9,7 +9,7 @@ except ImportError:
     from urllib.parse import urljoin
 
 BASE_URL = "https://media.githubusercontent.com/media/olgabot/macosko2015/" \
-         "master/data/"
+         "master/data/05_make_rentina_subsets_for_teaching/"
 
 
 def read_csv(folder, filename):
@@ -18,17 +18,12 @@ def read_csv(folder, filename):
     return pd.read_csv(csv, index_col=0)
 
 
-def _load(prefix, subfolder, package):
+def _load(prefix, package):
     """Internal method for loading """
 
-    # Add terminal slash because urljoin is not smart
-    subfolder = subfolder + '/' if not subfolder.endswith('/') else subfolder
-
-    folder = urljoin(BASE_URL, subfolder)
-
-    expression = read_csv(folder, '{}_expression.csv'.format(prefix))
-    cell_metadata = read_csv(folder, '{}_cell_metadata.csv'.format(prefix))
-    gene_metadata = read_csv(folder, '{}_gene_metadata.csv'.format(prefix))
+    expression = read_csv(BASE_URL, '{}_expression.csv'.format(prefix))
+    cell_metadata = read_csv(BASE_URL, '{}_cell_metadata.csv'.format(prefix))
+    gene_metadata = read_csv(BASE_URL, '{}_gene_metadata.csv'.format(prefix))
 
     if package == 'xarray':
         ds = xr.Dataset({'expression': (['cell', 'gene'], expression),
@@ -64,8 +59,7 @@ def load_big_clusters(package='pandas'):
     if format == "xarray"
         xarray.Dataset
     """
-    return _load('big_clusters', '05_make_rentina_subsets_for_teaching',
-                 package)
+    return _load('big_clusters', package)
 
 
 def load_amacrine(package='pandas'):
@@ -84,8 +78,7 @@ def load_amacrine(package='pandas'):
     if format == "xarray"
         xarray.Dataset
     """
-    return _load('amacrine', '05_make_rentina_subsets_for_teaching',
-                 package)
+    return _load('amacrine', package)
 
 
 def load_differential_clusters(package='pandas'):
@@ -104,5 +97,4 @@ def load_differential_clusters(package='pandas'):
     if format == "xarray":
         xarray.Dataset
     """
-    return _load('differential_clusters', '05_make_rentina_subsets_for_teaching',
-                 package)
+    return _load('differential_clusters', package)
