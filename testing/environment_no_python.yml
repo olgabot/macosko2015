@@ -9,7 +9,6 @@ dependencies:
 - notebook
 - pandas
 - xarray
-- NetCDF
 - seaborn
 - matplotlib
 - pip:
